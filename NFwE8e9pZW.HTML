@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ieric Streaming</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background-color: #000;
+        }
+
+        #video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        #intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+       #intro h1 {
+    font-size: 3em;
+    color: #fff;
+    opacity: 0;
+    animation: fadeIn 2s 1s forwards, fadeOut 2s 3s forwards;
+} 
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+
+        .hidden {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="video" controls>
+            <source src="https://github.com/erikkire123/dt38a4y9cr2g7y63rj75cazsjaq97wubj7zatat3fy7pkewbncusd8wmyq84wqwt7eg3vmszbvtvz93gw2r3ucnnn73w7s2bunmr/raw/main/e.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div id="intro">
+        <h1>ieric</h1>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('video');
+            var intro = document.getElementById('intro');
+
+            video.addEventListener('play', function() {
+                intro.classList.add('hidden');
+            });
+
+            video.addEventListener('pause', function() {
+                intro.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
