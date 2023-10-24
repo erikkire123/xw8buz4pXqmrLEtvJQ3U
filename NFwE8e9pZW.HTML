@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ieric Streaming</title>
+    <title>ieric</title>
     <style>
         body, html {
             margin: 0;
@@ -45,28 +45,40 @@
             transition: opacity 1s ease-in-out;
         }
 
-       #intro h1 {
-    font-size: 3em;
-    color: #fff;
-    opacity: 0;
-    animation: fadeIn 2s 1s forwards, fadeOut 2s 3s forwards;
-} 
+        #intro h1 {
+            font-size: 3em;
+            color: #fff;
+            opacity: 0;
+            animation: fadeIn 2s 1s forwards, fadeOut 2s 4s forwards;
+        }
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
 
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-    }
-}
-
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+            }
+        }
 
         .hidden {
             opacity: 0;
+        }
+
+        #play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -76,6 +88,7 @@
             <source src="https://github.com/erikkire123/dt38a4y9cr2g7y63rj75cazsjaq97wubj7zatat3fy7pkewbncusd8wmyq84wqwt7eg3vmszbvtvz93gw2r3ucnnn73w7s2bunmr/raw/main/e.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <button id="play-button">Play</button>
     </div>
 
     <div id="intro">
@@ -86,13 +99,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('video');
             var intro = document.getElementById('intro');
+            var playButton = document.getElementById('play-button');
+
+            video.addEventListener('canplay', function() {
+                video.play();
+            });
 
             video.addEventListener('play', function() {
                 intro.classList.add('hidden');
+                playButton.style.display = 'none';
             });
 
             video.addEventListener('pause', function() {
                 intro.classList.remove('hidden');
+                playButton.style.display = 'block';
+            });
+
+            playButton.addEventListener('click', function() {
+                video.play();
+                playButton.style.display = 'none';
             });
         });
     </script>
